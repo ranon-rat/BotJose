@@ -1,39 +1,37 @@
-const Discord = require('discord.js');
+
+const Discord = require("discord.js");
 const client = new Discord.Client();
 
-function presence(){
-client.user.setPresence({
- status:"online",
- game: {
-   name:"CALLAO LACRA | -help",
-   type:"PLAYING"
- }
-
-});
 
 
-}
 
-client.on('ready', () => {
+client.on("ready", () => {
+     client.user.setPresence({ game: { name: 'with discord.js' }, status: 'idle' })
+        console.log(`${client.user.username} is up and running!`);
+  
+  
   console.log(`BOT_JOSE LISTO!!! ${client.user.tag}!`);
-  presence();
 });
 
-client.on('message', msg => {
-  if (msg.content === '/klk') {
-    msg.reply('tamo activo pai :)');
-  }
-});
- 
 client.on("message", msg => {
-var Mensajes = ["hola","respeta","callao lacra","payaso"];
-var aleatorio = Math.floor(Math.random()*(Mensajes.length));
-if (message.content.startsWith('hola')){
-  message.channel.send(Mensajes[aleatorio]);
-}
-
+  const embed=new Discord.RichEmbed().addField("Something One","Lorem ipsum dolor sit amet, consectetur adipiscing elit.Duis sed justo sit amet magna hendrerit laoreet at nec ligula.   Vestibulum nunc justo, dignissim pulvinar placerat at, blandit quis mi.Suspendisse nec nisi blandit, viverra lectus ut, imperdiet ex.Vestibulum condimentum lorem eget ligula consequat posuere. Cras in accumsan tortor, nec malesuada sapien. Nam vel pharetra purus, ac malesuada odio. Pellentesque ac magna dapibus, blandit tellus quis,ultrices felis. Ut ornare vitae risus nec pretium. Nunc sit amet lacus dolor.");
+  if (msg.content === "/klk") {
+    
+    msg.reply("tamo activo pai :)");
+  }
+  if (msg.content === "/callao") {
+    msg.reply("pal lobby rey");
+  }
+  if (msg.content==="puta"){
+    msg.reply("calla puta")
+  }
+  if (msg.content==="lorem"){
+    msg.channel.send(embed)
+  }
+  
+  
 });
- 
 
 
-client.login('NzQ1ODQyNzE5NDYwNDI1NzM5.Xz3qKQ.qDl4j138fvJdou6X-w6mk1rXs0A');
+
+client.login("NzQ1ODQyNzE5NDYwNDI1NzM5.Xz3qKQ.mqooPRtrhOeQXSAc09f5BO1XGQA");
