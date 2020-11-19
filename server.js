@@ -1,11 +1,12 @@
 const {token}=require("./settings.json")
 //packages
-const Discord = require("discord.js"), // discord bots
+const {Client} = require("discord.js"), // discord bots
   axios = require("axios"), //http request
   cheerio = require("cheerio"); //web scrapping
+//links
+var img = [];
 //objects
-const client = new Discord.Client(),
-  commands = {
+const commands = {
     "/callao": function(msg) {
       msg.channel.send("when haces tus momos en video :V");
     },
@@ -35,19 +36,19 @@ const client = new Discord.Client(),
     }
   };
 
-client.on("ready", () => {
-  client.user.setPresence({
+Client.on("ready", () => {
+  Client.user.setPresence({
     game: { name: "with discord.js" },
     status: "idle"
   });
 
-  console.log(`${client.user.username} is up and running!`);
+  console.log(`${Client.user.username} is up and running!`);
 
-  console.log(`BOT_JOSE LISTO!!! ${client.user.tag}!`);
+  console.log(`BOT_JOSE LISTO!!! ${Client.user.tag}!`);
 });
-var img = [];
 
-client.on("message", msg => {
+
+Client.on("message", msg => {
   if (commands.hasOwnProperty(msg.content)) {
     commands[msg.content](msg);
   }
@@ -55,4 +56,4 @@ client.on("message", msg => {
     msg.author.send("viva la grasa :V");
   }
 });
-client.login(token);
+Client.login(token);
