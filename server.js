@@ -1,3 +1,10 @@
+const linkMemes = [
+  "https://www.reddit.com/r/MAAU/",
+  "https://www.reddit.com/r/memes/",
+  "https://www.reddit.com/r/dankmemes/",
+  "https://www.reddit.com/r/Memes_Of_The_Dank",
+  "https://www.reddit.com/r/4chan"
+];
 const {token}=require("./settings.json")
 //packages
 const {Client} = require("discord.js"), // discord bots
@@ -11,20 +18,22 @@ const commands = {
       msg.channel.send("when haces tus momos en video :V");
     },
     "/newMomo": function(msg) {
-      let url = "https://www.reddit.com/r/memesmexicanos/";
-      axios
-        .get(url)
-        .then(r => {
-          let $ = cheerio.load(r.data);
-          $("._2_tDEnGMLxpM6uOa2kaDB3").each((i, e) => {
-            img.push($(e).attr("src"));
+      linkMemes.map(i => {
+        axios
+          .get(i)
+          .then(r => {
+            let $ = cheerio.load(r.data);
+            $("._2_tDEnGMLxpM6uOa2kaDB3").each((i, e) => {
+              img.push($(e).attr("src"));
+            });
+          })
+          .catch(e => {
+            if (e) {
+              msg.channel.send(" no se ha encontrado un buen momo");
+            }
           });
-        })
-        .catch(e => {
-          if (e) {
-            msg.channel.send(" no se ha encontrado un buen momo");
-          }
-        });
+      });
+    },
     },
     "/momo": function(msg) {
       msg.channel.send(img[Math.floor(Math.random() * img.length)]);
